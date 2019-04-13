@@ -41,5 +41,5 @@ target2.y=10
 version=3.0.0
 width=1052
 world.lastInstantiated=Piano
-xPosition=92
-yPosition=52
+xPosition=150
+yPosition=60
