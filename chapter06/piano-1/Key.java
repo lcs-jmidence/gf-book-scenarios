@@ -4,20 +4,23 @@ public class Key extends Actor
 {
     /**
      * Instance variables
-     * These can be used anywhere in the class below
+     * These can be used anywhere in the class below.
      */
-    //Will keep track of  whether a key was just pressed
-    private boolean KeyAlreadyDown;
+    // Will keep track of whether a key was just pressed
+    private boolean keyAlreadyDown;
+    // Will contain the key and sound file that this instance of the class will play
     private String key;
     private String sound;
-
+    
     /**
      * Create a new key.
+     * Constuctor – it runs once when a Key object is created.
      */
     public Key(String keyName, String soundFile)
     {
         // No key has been pressed
-        KeyAlreadyDown = false;
+        keyAlreadyDown = false;
+        
         // Set the instance variables using the parameters
         key = keyName;
         sound = soundFile;
@@ -29,25 +32,26 @@ public class Key extends Actor
     public void act()
     {
         // Animate the piano key being pressed
-        // Condition 1 - is the "g" key being pressed
-        // Condition 2 - was the "g" key already down
-        if (Greenfoot.isKeyDown(key) && KeyAlreadyDown == false)
+        // Condition 1 – is the "g" key being pressed
+        // Condition 2 - the key was NOT already down
+        if ( Greenfoot.isKeyDown(key) && !keyAlreadyDown)
         {
-            //key is down
+            // Key is down
             setImage("white-key-down.png");
             play();
-            KeyAlreadyDown = true;
+            keyAlreadyDown = true;
         }
 
         // Stop showing the key being pressed
-        // Condition 1 - The Key was down the last time act() fired]
+        // Condition 1 - The key was down the last time act() fired
         // Condition 2 - The "g" has been released (no longer being pressed)
-        if ((KeyAlreadyDown == true) && Greenfoot.isKeyDown(key) == false)
+        if ( keyAlreadyDown == true && !Greenfoot.isKeyDown(key))
         {
-            //key is up
+            // Key is up
             setImage("white-key.png");
-            KeyAlreadyDown = false;
+            keyAlreadyDown = false;
         }
+        
     }
 
     /**
@@ -55,7 +59,23 @@ public class Key extends Actor
      */
     public void play()
     {
-        Greenfoot.playSound(sound + ".wav");   
+        Greenfoot.playSound(sound + ".wav");
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
