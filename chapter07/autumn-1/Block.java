@@ -40,7 +40,7 @@ public class Block extends Actor
             // Add a refrence to the World
             World myWorld = getWorld();
             // Use the object refrence to call, or use, a method on the World Object
-            myWorld.addObject(new Leaf(), 100, 100);
+            myWorld.addObject(new Leaf(), getX(), getY());
         }
     }
     
