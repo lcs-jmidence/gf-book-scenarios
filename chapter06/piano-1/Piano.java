@@ -48,7 +48,7 @@ public class Piano extends World
         // every full second, when the position is less than count of items in the array
         if ( (frames % 60 == 0) && (position < whiteKeys.length) )
         {
-            //\Only show a message when we are in the bounds of the array
+            //Only show a message when we are in the bounds of the array
             showText("Array index is: " + position, 400, 250);
             
             // Create an object to add to the world
@@ -66,7 +66,7 @@ public class Piano extends World
         frames += 1;
 
         // Show the frames
-        // showText("" + frames, 100, 100);
+        showText("" + frames, 100, 100);
     }
 
 }

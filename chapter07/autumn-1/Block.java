@@ -1,4 +1,6 @@
 import greenfoot.*;
+// In order to use a list in Java, we must import it
+import java.util.List;
 
 /**
  * A block that bounces back and forth across the screen.
@@ -9,7 +11,7 @@ import greenfoot.*;
 public class Block extends Actor
 {
     private int delta = 2;
-    
+
     /**
      * Move across the screen, bounce off edges. Turn leaves, if we touch any.
      */
@@ -18,8 +20,22 @@ public class Block extends Actor
         move();
         checkEdge();
         checkMouseClick();
+        CheckForLeafCollision();
     }
-    
+
+    private void CheckForLeafCollision()
+    {
+        // Get an object reference to a single Leaf from any Leaf object we are currenlty
+        // Intersecting
+        Leaf someLeaf = (Leaf)getOneIntersectingObject(Leaf.class);
+        // Check that the someLeaf object actually has a reference to an object
+        // If it's null, that means there was no Leaf intersecting the Block this time around
+        if(someLeaf !=null)
+        {
+            removeTouching(Leaf.class);
+        }
+    }
+
     /**
      * Move sideways, either left or right.
      */
@@ -27,7 +43,7 @@ public class Block extends Actor
     {
         setLocation(getX()+delta, getY());
     }
-    
+
     /**
      * Check whether we are at the edge of the screen. If we are, turn around.
      */
@@ -43,16 +59,21 @@ public class Block extends Actor
             myWorld.addObject(new Leaf(), getX(), getY());
         }
     }
-    
+
     /**
      * Check whether the mouse button was clicked. If it was, change all leaves.
      */
     private void checkMouseClick()
     {
-        if (Greenfoot.mouseClicked(null)) 
+        // When null is the argument, Greenfoot responds to a mouse click anywhere on screen
+        // When this is the argument, Greenfoot responds to a mouse click Only on the block object
+        if (Greenfoot.mouseClicked(this)) 
         {
-            // do this when the mouse is clicked. currently: nothing.
+            // Get an object reference to the world
+            World myWorld = getWorld();
+            // Make a message show on screen when th mouse is clicked
+            myWorld.showText("Mouse Has Been Clicked", 200, 200);
         }
     }
-    
+
 }
