@@ -67,12 +67,19 @@ public class Block extends Actor
     {
         // When null is the argument, Greenfoot responds to a mouse click anywhere on screen
         // When this is the argument, Greenfoot responds to a mouse click Only on the block object
-        if (Greenfoot.mouseClicked(this)) 
+        if (Greenfoot.mouseClicked(null)) 
         {
             // Get an object reference to the world
             World myWorld = getWorld();
-            // Make a message show on screen when th mouse is clicked
-            myWorld.showText("Mouse Has Been Clicked", 200, 200);
+            // Get a list that contains object references to all th leaf object in world
+            // Type Name                      Class of desired object
+            List<Leaf> leaves = myWorld.getObjects(Leaf.class);
+            // Iterate through the list of Leaf object
+            // Each iteration will provide an object reference to a specific Leaf object
+            for (Leaf leaf : leaves)
+            {
+                leaf.changeImage();
+            }
         }
     }
 
